@@ -6,6 +6,6 @@ import type { Selector } from 'webdriverio';
  * @param  {String}   destination The selector for the destination element
  */
 export default async (selector: Selector, destination: Selector) => {
-    const target = await $(destination);
-    await $(selector).dragAndDrop(target);
+  const target = await $(destination);
+  await $(selector).dragAndDrop(target);
 };

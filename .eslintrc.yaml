@@ -4,12 +4,14 @@ parser: '@typescript-eslint/parser'
 
 plugins:
   - wdio
-  - "@typescript-eslint"
+  - '@typescript-eslint'
+  - prettier
 
 extends:
   - airbnb-base
   - plugin:wdio/recommended
   - plugin:@typescript-eslint/recommended
+  - prettier
 
 globals:
   assert: true
@@ -18,8 +20,10 @@ globals:
 env:
   es6: true
   node: true
+  browser: true
 
 rules:
+  prettier/prettier: ['error']
   comma-dangle:
     - 'error'
     - arrays: 'always-multiline'
@@ -32,7 +36,7 @@ rules:
   import/prefer-default-export: 0
   indent:
     - 'error'
-    - 4
+    - 2
     - SwitchCase: 1
   max-len:
     - 'error'
@@ -45,19 +49,19 @@ rules:
         - 'Given'
         - 'When'
         - 'Then'
-  require-jsdoc:
-    - 'error'
-    - require:
-        FunctionDeclaration: true
-        MethodDefinition: true
-        ClassDeclaration: true
+  # require-jsdoc:
+  # - 'error'
+  # - require:
+  #   FunctionDeclaration: true
+  #   MethodDefinition: true
+  #   ClassDeclaration: true
   strict: 'off'
   valid-jsdoc:
     - 'error'
     - requireReturn: false
       matchDescription: '.+'
-  "@typescript-eslint/ban-ts-comment": 0
-  "@typescript-eslint/explicit-module-boundary-types": 0
+  '@typescript-eslint/ban-ts-comment': 0
+  '@typescript-eslint/explicit-module-boundary-types': 0
   import/no-unresolved: 0
   import/extensions: 0
   no-restricted-syntax: 0

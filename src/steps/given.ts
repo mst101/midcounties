@@ -21,107 +21,71 @@ import isDisplayed from '../support/check/isDisplayed.js';
 import openWebsite from '../support/action/openWebsite.js';
 import setWindowSize from '../support/action/setWindowSize.js';
 
+Given(/^I open the (url|site) "([^"]*)?"$/, openWebsite);
+
+Given(/^the element "([^"]*)?" is( not)* displayed$/, isDisplayed);
+
+Given(/^the element "([^"]*)?" is( not)* enabled$/, isEnabled);
+
+Given(/^the element "([^"]*)?" is( not)* selected$/, checkSelected);
+
+Given(/^the checkbox "([^"]*)?" is( not)* checked$/, checkSelected);
+
+Given(/^there is (an|no) element "([^"]*)?" on the page$/, checkElementExists);
+
+Given(/^the title is( not)* "([^"]*)?"$/, checkTitle);
+
 Given(
-    /^I open the (url|site) "([^"]*)?"$/,
-    openWebsite
+  /^the element "([^"]*)?" contains( not)* the same text as element "([^"]*)?"$/,
+  compareText,
 );
 
 Given(
-    /^the element "([^"]*)?" is( not)* displayed$/,
-    isDisplayed
+  /^the (button|element) "([^"]*)?"( not)* matches the text "([^"]*)?"$/,
+  checkEqualsText,
 );
 
 Given(
-    /^the element "([^"]*)?" is( not)* enabled$/,
-    isEnabled
+  /^the (button|element|container) "([^"]*)?"( not)* contains the text "([^"]*)?"$/,
+  checkContainsText,
 );
 
 Given(
-    /^the element "([^"]*)?" is( not)* selected$/,
-    checkSelected
+  /^the (button|element) "([^"]*)?"( not)* contains any text$/,
+  checkContainsAnyText,
+);
+
+Given(/^the (button|element) "([^"]*)?" is( not)* empty$/, checkIsEmpty);
+
+Given(/^the page url is( not)* "([^"]*)?"$/, checkUrl);
+
+Given(
+  /^the( css)* attribute "([^"]*)?" from element "([^"]*)?" is( not)* "([^"]*)?"$/,
+  checkProperty,
 );
 
 Given(
-    /^the checkbox "([^"]*)?" is( not)* checked$/,
-    checkSelected
+  /^the cookie "([^"]*)?" contains( not)* the value "([^"]*)?"$/,
+  checkCookieContent,
+);
+
+Given(/^the cookie "([^"]*)?" does( not)* exist$/, checkCookieExists);
+
+Given(
+  /^the element "([^"]*)?" is( not)* ([\d]+)px (broad|tall)$/,
+  checkDimension,
 );
 
 Given(
-    /^there is (an|no) element "([^"]*)?" on the page$/,
-    checkElementExists
+  /^the element "([^"]*)?" is( not)* positioned at ([\d]+)px on the (x|y) axis$/,
+  checkOffset,
 );
 
-Given(
-    /^the title is( not)* "([^"]*)?"$/,
-    checkTitle
-);
+Given(/^I have a screen that is ([\d]+) by ([\d]+) pixels$/, setWindowSize);
 
 Given(
-    /^the element "([^"]*)?" contains( not)* the same text as element "([^"]*)?"$/,
-    compareText
+  /^I have closed all but the first (window|tab)$/,
+  closeAllButFirstTab as never,
 );
 
-Given(
-    /^the (button|element) "([^"]*)?"( not)* matches the text "([^"]*)?"$/,
-    checkEqualsText
-);
-
-Given(
-    /^the (button|element|container) "([^"]*)?"( not)* contains the text "([^"]*)?"$/,
-    checkContainsText
-);
-
-Given(
-    /^the (button|element) "([^"]*)?"( not)* contains any text$/,
-    checkContainsAnyText
-);
-
-Given(
-    /^the (button|element) "([^"]*)?" is( not)* empty$/,
-    checkIsEmpty
-);
-
-Given(
-    /^the page url is( not)* "([^"]*)?"$/,
-    checkUrl
-);
-
-Given(
-    /^the( css)* attribute "([^"]*)?" from element "([^"]*)?" is( not)* "([^"]*)?"$/,
-    checkProperty
-);
-
-Given(
-    /^the cookie "([^"]*)?" contains( not)* the value "([^"]*)?"$/,
-    checkCookieContent
-);
-
-Given(
-    /^the cookie "([^"]*)?" does( not)* exist$/,
-    checkCookieExists
-);
-
-Given(
-    /^the element "([^"]*)?" is( not)* ([\d]+)px (broad|tall)$/,
-    checkDimension
-);
-
-Given(
-    /^the element "([^"]*)?" is( not)* positioned at ([\d]+)px on the (x|y) axis$/,
-    checkOffset
-);
-
-Given(
-    /^I have a screen that is ([\d]+) by ([\d]+) pixels$/,
-    setWindowSize
-);
-
-Given(
-    /^I have closed all but the first (window|tab)$/,
-    closeAllButFirstTab as never
-);
-
-Given(
-    /^a (alertbox|confirmbox|prompt) is( not)* opened$/,
-    checkModal
-);
+Given(/^a (alertbox|confirmbox|prompt) is( not)* opened$/, checkModal);

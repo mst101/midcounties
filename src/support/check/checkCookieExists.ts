@@ -5,23 +5,23 @@
  *                              not
  */
 export default async (name: string, falseCase: boolean) => {
-    /**
-     * The cookie as retrieved from the browser
-     * @type {Object}
-     */
-    const cookie = await browser.getCookies(name);
+  /**
+   * The cookie as retrieved from the browser
+   * @type {Object}
+   */
+  const cookie = await browser.getCookies(name);
 
-    if (falseCase) {
-        expect(cookie).toHaveLength(
-            0,
-            // @ts-expect-error
-            `Expected cookie "${name}" not to exists but it does`
-        );
-    } else {
-        expect(cookie).not.toHaveLength(
-            0,
-            // @ts-expect-error
-            `Expected cookie "${name}" to exists but it does not`
-        );
-    }
+  if (falseCase) {
+    expect(cookie).toHaveLength(
+      0,
+      // @ts-expect-error
+      `Expected cookie "${name}" not to exists but it does`,
+    );
+  } else {
+    expect(cookie).not.toHaveLength(
+      0,
+      // @ts-expect-error
+      `Expected cookie "${name}" to exists but it does not`,
+    );
+  }
 };

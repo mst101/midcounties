@@ -10,19 +10,19 @@ import checkIfElementExists from '../lib/checkIfElementExists.js';
  * @param  {String}   selector Element selector
  */
 export default async (method: string, value: string, selector: Selector) => {
-    /**
-     * The command to perform on the browser object (addValue or setValue)
-     * @type {String}
-     */
-    const command = (method === 'add') ? 'addValue' : 'setValue';
+  /**
+   * The command to perform on the browser object (addValue or setValue)
+   * @type {String}
+   */
+  const command = method === 'add' ? 'addValue' : 'setValue';
 
-    let checkValue = value;
+  let checkValue = value;
 
-    await checkIfElementExists(selector, false, 1);
+  await checkIfElementExists(selector, false, 1);
 
-    if (!value) {
-        checkValue = '';
-    }
+  if (!value) {
+    checkValue = '';
+  }
 
-    await $(selector)[command](checkValue);
+  await $(selector)[command](checkValue);
 };

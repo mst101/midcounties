@@ -9,53 +9,53 @@ import type { Selector } from 'webdriverio';
  * @param  {String}   expectedText  The text to validate against
  */
 export default async (
-    elementType: 'element' | 'button',
-    selector: Selector,
-    falseCase: boolean,
-    expectedText: string
+  elementType: 'element' | 'button',
+  selector: Selector,
+  falseCase: boolean,
+  expectedText: string,
 ) => {
-    /**
-     * The command to execute on the browser object
-     * @type {String}
-     */
-    let command: 'getText' | 'getValue' = 'getValue';
+  /**
+   * The command to execute on the browser object
+   * @type {String}
+   */
+  let command: 'getText' | 'getValue' = 'getValue';
 
-    if (
-        elementType === 'button'
-        || (await $(selector).getAttribute('value')) === null
-    ) {
-        command = 'getText';
-    }
+  if (
+    elementType === 'button' ||
+    (await $(selector).getAttribute('value')) === null
+  ) {
+    command = 'getText';
+  }
 
-    /**
-     * The expected text to validate against
-     * @type {String}
-     */
-    let parsedExpectedText = expectedText;
+  /**
+   * The expected text to validate against
+   * @type {String}
+   */
+  let parsedExpectedText = expectedText;
 
-    /**
-     * Whether to check if the content equals the given text or not
-     * @type {Boolean}
-     */
-    let boolFalseCase = !!falseCase;
+  /**
+   * Whether to check if the content equals the given text or not
+   * @type {Boolean}
+   */
+  let boolFalseCase = !!falseCase;
 
-    // Check for empty element
-    if (typeof parsedExpectedText === 'function') {
-        parsedExpectedText = '';
+  // Check for empty element
+  if (typeof parsedExpectedText === 'function') {
+    parsedExpectedText = '';
 
-        boolFalseCase = !boolFalseCase;
-    }
+    boolFalseCase = !boolFalseCase;
+  }
 
-    if (parsedExpectedText === undefined && falseCase === undefined) {
-        parsedExpectedText = '';
-        boolFalseCase = true;
-    }
+  if (parsedExpectedText === undefined && falseCase === undefined) {
+    parsedExpectedText = '';
+    boolFalseCase = true;
+  }
 
-    const text = await $(selector)[command]();
+  const text = await $(selector)[command]();
 
-    if (boolFalseCase) {
-        expect(parsedExpectedText).not.toBe(text);
-    } else {
-        expect(parsedExpectedText).toBe(text);
-    }
+  if (boolFalseCase) {
+    expect(parsedExpectedText).not.toBe(text);
+  } else {
+    expect(parsedExpectedText).toBe(text);
+  }
 };

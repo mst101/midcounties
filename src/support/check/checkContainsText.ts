@@ -9,54 +9,54 @@ import type { Selector } from 'webdriverio';
  * @param  {String}   expectedText  The text to check against
  */
 export default async (
-    elementType: 'element' | 'button',
-    selector: Selector,
-    falseCase: ' not',
-    expectedText: string
+  elementType: 'element' | 'button',
+  selector: Selector,
+  falseCase: ' not',
+  expectedText: string,
 ) => {
-    /**
-     * The command to perform on the browser object
-     * @type {String}
-     */
-    let command: 'getValue' | 'getText' = 'getValue';
+  /**
+   * The command to perform on the browser object
+   * @type {String}
+   */
+  let command: 'getValue' | 'getText' = 'getValue';
 
-    if (
-        ['button', 'container'].includes(elementType)
-        || (await $(selector).getProperty('value')) === null
-    ) {
-        command = 'getText';
-    }
+  if (
+    ['button', 'container'].includes(elementType) ||
+    (await $(selector).getProperty('value')) === null
+  ) {
+    command = 'getText';
+  }
 
-    /**
-     * False case
-     * @type {Boolean}
-     */
-    let boolFalseCase;
+  /**
+   * False case
+   * @type {Boolean}
+   */
+  let boolFalseCase;
 
-    /**
-     * The expected text
-     * @type {String}
-     */
-    let stringExpectedText = expectedText;
+  /**
+   * The expected text
+   * @type {String}
+   */
+  let stringExpectedText = expectedText;
 
-    /**
-     * The text of the element
-     * @type {String}
-     */
-    const elem = await $(selector);
-    await elem.waitForDisplayed();
-    const text = await elem[command]();
+  /**
+   * The text of the element
+   * @type {String}
+   */
+  const elem = await $(selector);
+  await elem.waitForDisplayed();
+  const text = await elem[command]();
 
-    if (typeof expectedText === 'undefined') {
-        stringExpectedText = falseCase;
-        boolFalseCase = false;
-    } else {
-        boolFalseCase = (falseCase === ' not');
-    }
+  if (typeof expectedText === 'undefined') {
+    stringExpectedText = falseCase;
+    boolFalseCase = false;
+  } else {
+    boolFalseCase = falseCase === ' not';
+  }
 
-    if (boolFalseCase) {
-        expect(text).not.toContain(stringExpectedText);
-    } else {
-        expect(text).toContain(stringExpectedText);
-    }
+  if (boolFalseCase) {
+    expect(text).not.toContain(stringExpectedText);
+  } else {
+    expect(text).toContain(stringExpectedText);
+  }
 };

@@ -1,16 +1,15 @@
-Cucumber Boilerplate [![Test](https://github.com/webdriverio/cucumber-boilerplate/actions/workflows/test.yaml/badge.svg)](https://github.com/webdriverio/cucumber-boilerplate/actions/workflows/test.yaml)
-====================
+# Cucumber Boilerplate [![Test](https://github.com/webdriverio/cucumber-boilerplate/actions/workflows/test.yaml/badge.svg)](https://github.com/webdriverio/cucumber-boilerplate/actions/workflows/test.yaml)
 
 Boilerplate project to run WebdriverIO (alpha v8) tests with [Cucumber](https://cucumber.io/) and brings **true** [BDD](http://en.wikipedia.org/wiki/Behavior-driven_development) to JavaScript. Instead of writing complicated test code that only developers can understand, Cucumber maps an ordinary language to code and allows to start with the test process in the early stages of your product development.
 
-__Note:__ If you are still using an older WebdriverIO version, check out the [`v7`](https://github.com/webdriverio/cucumber-boilerplate/tree/v7) branch.
+**Note:** If you are still using an older WebdriverIO version, check out the [`v7`](https://github.com/webdriverio/cucumber-boilerplate/tree/v7) branch.
 
 ## Requirements
 
 - Node version 14 or higher
 - A preconfigured Selenium Grid, preinstalled browser driver or cloud provider account
 
-Although this project works fine with NPM we recommend to use Yarn (>= 1.0.0) instead,  due to its speed & solid dependency locking mechanism. To keep things simple we use yarn in this guide, but feel free to replace this with NPM if that is what you are using.
+Although this project works fine with NPM we recommend to use Yarn (>= 1.0.0) instead, due to its speed & solid dependency locking mechanism. To keep things simple we use yarn in this guide, but feel free to replace this with NPM if that is what you are using.
 
 Also this project doesn't cover setting up a proper test environment. You need to download specific browser driver yourself and run the prior starting tests or use a cloud provider like [SauceLabs](https://saucelabs.com/).
 
@@ -21,16 +20,18 @@ Choose one of the following options:
 1. Download the latest stable release [here](https://github.com/webdriverio/cucumber-boilerplate/archive/main.zip) or clone the git repo — `git clone https://github.com/webdriverio/cucumber-boilerplate.git`
 
 2. Then:
+
 - Copy the files to your project into a directory like `/integrationtests` (note the hidden files!)
 
 3. Clean the project (Optional):
-- *On OSX/Linux:*
--- Run `yarn run clean`
 
-- *On Windows:*
--- Remove the directories `/.git`, `/.github`, `/demo-app` & `/test`
--- Remove the files `.travis.yml`, `jest.json` & `wdio.BUILD.conf.js`
--- Remove all the demo features from the `/src/features` directory
+- _On OSX/Linux:_
+  -- Run `yarn run clean`
+
+- _On Windows:_
+  -- Remove the directories `/.git`, `/.github`, `/demo-app` & `/test`
+  -- Remove the files `.travis.yml`, `jest.json` & `wdio.BUILD.conf.js`
+  -- Remove all the demo features from the `/src/features` directory
 
 4. Install the dependencies (`yarn install`)
 
@@ -53,7 +54,8 @@ that means that you write down what's supposed to happen in a real language. All
 directory. They should demonstrate, how tests could look like. Just create a new file and write your first
 test.
 
-__myFirstTest.feature__
+**myFirstTest.feature**
+
 ```gherkin
 Feature:
     In order to keep my product stable
@@ -107,11 +109,12 @@ wdio.<ENVIRONMENT>.conf.js
 
 Now you can create a specific config for your pre-deploy tests:
 
-__wdio.STAGING.conf.js__
+**wdio.STAGING.conf.js**
+
 ```js
 var config = require('./wdio.conf.js').config;
 
-config.baseUrl = 'http://staging.example.com'
+config.baseUrl = 'http://staging.example.com';
 
 exports.config = config;
 ```
@@ -124,12 +127,12 @@ $ yarn run wdio wdio.STAGING.conf.js
 ```
 
 # Running single feature
+
 Sometimes it's useful to only execute a single feature file, to do so use the following command:
 
 ```sh
 $ npx wdio wdio.conf.js --spec ./test/features/select.feature
 ```
-
 
 # Using tags
 
@@ -260,7 +263,7 @@ Check out all predefined snippets. You can see how they get used in [`sampleSnip
 - `I drag element "([^"]*)?" to element "([^"]*)?"` <br>Drag an element to another element
 - `I submit the form "([^"]*)?"` <br>Submit a form
 - `I pause for (\d+)ms` <br>Pause for a certain number of milliseconds
-- `I set a cookie "([^"]*)?" with the content "([^"]*)?"` <br>Set the content of a cookie with the given name to  the given string
+- `I set a cookie "([^"]*)?" with the content "([^"]*)?"` <br>Set the content of a cookie with the given name to the given string
 - `I delete the cookie "([^"]*)?"` <br>Delete the cookie with the given name
 - `I press "([^"]*)?"` <br>Press a given key. You’ll find all supported characters [here](https://w3c.github.io/webdriver/webdriver-spec.html#keyboard-actions). To do that, the value has to correspond to a key from the table.
 - `I (accept|dismiss) the (alertbox|confirmbox|prompt)` <br>Accept or dismiss a modal window

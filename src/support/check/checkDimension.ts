@@ -10,54 +10,54 @@ import type { RectReturn } from '@wdio/protocols';
  * @param  {String}   dimension    Dimension to check (broad or tall)
  */
 export default async (
-    selector: Selector,
-    falseCase: boolean,
-    expectedSize: string,
-    dimension: 'broad' | 'tall'
+  selector: Selector,
+  falseCase: boolean,
+  expectedSize: string,
+  dimension: 'broad' | 'tall',
 ) => {
-    /**
-     * The size of the given element
-     * @type {Object}
-     */
-    // @ts-expect-error
-    const elementSize = await $(selector).getSize() as RectReturn;
+  /**
+   * The size of the given element
+   * @type {Object}
+   */
+  // @ts-expect-error
+  const elementSize = (await $(selector).getSize()) as RectReturn;
 
-    /**
-     * Parsed size to check for
-     * @type {Int}
-     */
-    const intExpectedSize = parseInt(expectedSize, 10);
+  /**
+   * Parsed size to check for
+   * @type {Int}
+   */
+  const intExpectedSize = parseInt(expectedSize, 10);
 
-    /**
-     * The size property to check against
-     * @type {Int}
-     */
-    let originalSize = elementSize.height;
+  /**
+   * The size property to check against
+   * @type {Int}
+   */
+  let originalSize = elementSize.height;
 
-    /**
-     * The label of the checked property
-     * @type {String}
-     */
-    let label = 'height';
+  /**
+   * The label of the checked property
+   * @type {String}
+   */
+  let label = 'height';
 
-    if (dimension === 'broad') {
-        originalSize = elementSize.width;
-        label = 'width';
-    }
+  if (dimension === 'broad') {
+    originalSize = elementSize.width;
+    label = 'width';
+  }
 
-    if (falseCase) {
-        expect(originalSize).not.toBe(
-            intExpectedSize,
-            // @ts-expect-error
-            `Element "${selector}" should not have a ${label} of `
-            + `${intExpectedSize}px`
-        );
-    } else {
-        expect(originalSize).toBe(
-            intExpectedSize,
-            // @ts-expect-error
-            `Element "${selector}" should have a ${label} of `
-            + `${intExpectedSize}px, but is ${originalSize}px`
-        );
-    }
+  if (falseCase) {
+    expect(originalSize).not.toBe(
+      intExpectedSize,
+      // @ts-expect-error
+      `Element "${selector}" should not have a ${label} of ` +
+        `${intExpectedSize}px`,
+    );
+  } else {
+    expect(originalSize).toBe(
+      intExpectedSize,
+      // @ts-expect-error
+      `Element "${selector}" should have a ${label} of ` +
+        `${intExpectedSize}px, but is ${originalSize}px`,
+    );
+  }
 };

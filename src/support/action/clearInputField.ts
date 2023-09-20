@@ -5,5 +5,5 @@ import type { Selector } from 'webdriverio';
  * @param  {String}   selector Element selector
  */
 export default async (selector: Selector) => {
-    await $(selector).clearValue();
+  await $(selector).clearValue();
 };

@@ -8,16 +8,12 @@ import type { Selector } from 'webdriverio';
  *
  * @todo  merge with selectOption
  */
-export default async (
-    index: string,
-    obsolete: never,
-    selector: Selector
-) => {
-    /**
-     * The index of the option to select
-     * @type {Int}
-     */
-    const optionIndex = parseInt(index, 10);
+export default async (index: string, obsolete: never, selector: Selector) => {
+  /**
+   * The index of the option to select
+   * @type {Int}
+   */
+  const optionIndex = parseInt(index, 10);
 
-    await $(selector).selectByIndex(optionIndex);
+  await $(selector).selectByIndex(optionIndex);
 };

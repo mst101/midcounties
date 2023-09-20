@@ -9,15 +9,15 @@ import checkIfElementExists from '../lib/checkIfElementExists.js';
  * @param  {String}   selector   Element selector
  */
 export default async (isExisting: string, selector: Selector) => {
-    /**
-     * Falsecase assertion
-     * @type {Boolean}
-     */
-    let falseCase = true;
+  /**
+   * Falsecase assertion
+   * @type {Boolean}
+   */
+  let falseCase = true;
 
-    if (isExisting === 'an') {
-        falseCase = false;
-    }
+  if (isExisting === 'an') {
+    falseCase = false;
+  }
 
-    await checkIfElementExists(selector, falseCase);
+  await checkIfElementExists(selector, falseCase);
 };

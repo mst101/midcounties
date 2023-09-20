@@ -11,5 +11,4 @@ rules:
     - 'error'
     - 'never'
   import/no-unresolved: 'off'
-
-
+  require-jsdoc: 'off'
