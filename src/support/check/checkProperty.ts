@@ -1,11 +1,12 @@
 import type { Selector } from 'webdriverio';
+import pageObjectSelector from '../lib/pageObjectSelector.js';
 
 /**
  * Check the given property of the given element
  * @param  {String}   isCSS         Whether to check for a CSS property or an
  *                                  attribute
  * @param  {String}   attrName      The name of the attribute to check
- * @param  {String}   selector          Element selector
+ * @param  {String}   origSelector  Element selector
  * @param  {String}   falseCase     Whether to check if the value of the
  *                                  attribute matches or not
  * @param  {String}   expectedValue The value to match against
@@ -13,10 +14,12 @@ import type { Selector } from 'webdriverio';
 export default async (
   isCSS: boolean,
   attrName: string,
-  selector: Selector,
+  origSelector: Selector,
   falseCase: boolean,
   expectedValue: number | string,
 ) => {
+  const selector = pageObjectSelector(origSelector);
+
   /**
    * The command to use for fetching the expected value
    * @type {String}

@@ -1,3 +1,4 @@
+import { ITestCaseHookParameter } from '@cucumber/cucumber';
 //
 // =====
 // Hooks
@@ -106,8 +107,17 @@ export const hooks = {
    * @param {Array.<Object>} capabilities list of capabilities details
    * @param {Array.<String>} specs List of spec file paths that ran
    */
-  // after: function (result, capabilities, specs) {
-  // },
+  // async after(result, capabilities, specs) {
+  async after() {
+    // console.log(result);
+    // console.log('~~~~~');
+    // console.log(capabilities);
+    // console.log('~~~~~');
+    // console.log(specs);
+    // console.log('~~~~~');
+    // eslint-disable-next-line no-console
+    console.log('Tests completed');
+  },
   /**
    * Gets executed right after terminating the webdriver session.
    * @param {Object} config wdio configuration object
@@ -140,6 +150,23 @@ export const hooks = {
   // },
   // beforeScenario: function (uri, feature, scenario, sourceLocation) {
   // },
+  /**
+   *
+   * Runs before a Cucumber Scenario.
+   * @param {ITestCaseHookParameter} context Object information on pickle and test steps
+   * @param {ITestCaseHookParameter} world Object information on pickle and test steps
+   */
+  // eslint-disable-next-line object-shorthand
+  async beforeScenario(context: ITestCaseHookParameter) {
+    if (context.pickle.tags.some((tag) => tag.name === '@restartApp')) {
+      driver.launchApp();
+    }
+    // console.log('\n~~~~~~~~~~~');
+    // console.log(context);
+    // console.log('~~~~~~~~~~~\n');
+    // console.log(world);
+    // console.log('~~~~~~~~~~~\n');
+  },
   // beforeStep: function ({uri, feature, step}, context) {
   // },
   // afterStep: function ({uri, feature, step}, context, {error, result, duration, passed}) {

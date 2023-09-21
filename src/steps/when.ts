@@ -2,11 +2,14 @@ import { When } from '@cucumber/cucumber';
 
 import clearInputField from '../support/action/clearInputField.js';
 import clickElement from '../support/action/clickElement.js';
+import closeAndReopenApp from '../support/action/closeAndReopenApp.js';
 import closeLastOpenedWindow from '../support/action/closeLastOpenedWindow.js';
 import deleteCookies from '../support/action/deleteCookies.js';
 import dragElement from '../support/action/dragElement.js';
 import focusLastOpenedWindow from '../support/action/focusLastOpenedWindow.js';
 import handleModal from '../support/action/handleModal.js';
+import login from '../support/action/login.js';
+import logOutAndIn from '../support/action/logOutAndIn.js';
 import moveTo from '../support/action/moveTo.js';
 import pause from '../support/action/pause.js';
 import pressButton from '../support/action/pressButton.js';
@@ -16,7 +19,16 @@ import selectOptionByIndex from '../support/action/selectOptionByIndex.js';
 import setCookie from '../support/action/setCookie.js';
 import setInputField from '../support/action/setInputField.js';
 import setPromptText from '../support/action/setPromptText.js';
+import skipSplashScreen from '../support/action/skipSplashScreen.js';
 import switchIFrame from '../support/action/switchIFrame.js';
+
+When(/^I log in$/, login);
+
+When(/^I log out and log in again$/, logOutAndIn);
+
+When(/^I close and re-open the app$/, closeAndReopenApp);
+
+When(/^I skip the splash screen$/, skipSplashScreen);
 
 When(
   /^I (click|doubleclick) on the (link|button|element) "([^"]*)?"$/,

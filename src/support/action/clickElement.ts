@@ -1,18 +1,20 @@
 import type { Selector } from 'webdriverio';
-
 import checkIfElementExists from '../lib/checkIfElementExists.js';
+import pageObjectSelector from '../lib/pageObjectSelector.js';
 
 /**
  * Perform an click action on the given element
  * @param  {String}   action  The action to perform (click or doubleClick)
  * @param  {String}   type    Type of the element (link or selector)
- * @param  {String}   selector Element selector
+ * @param  {String}   origSelector Element selector
  */
 export default async (
   action: 'click' | 'doubleClick',
   type: 'link' | 'selector',
-  selector: Selector,
+  origSelector: Selector,
 ) => {
+  const selector = pageObjectSelector(origSelector);
+
   /**
    * Element to perform the action on
    * @type {String}

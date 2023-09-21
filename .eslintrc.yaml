@@ -28,8 +28,8 @@ rules:
     - 'error'
     - arrays: 'always-multiline'
       objects: 'always-multiline'
-      imports: 'never'
-      exports: 'never'
+      imports: 'always-multiline'
+      exports: 'always-multiline'
       functions: 'ignore'
   global-require: 'off'
   import/no-extraneous-dependencies: 0
