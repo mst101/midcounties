@@ -23,6 +23,8 @@ buildConfig.capabilities = [
   },
 ];
 
+buildConfig.specs = ['./src/features-examples/**/*.feature'];
+
 buildConfig.services = [
   [
     'static-server',

@@ -16,10 +16,16 @@ import checkTitle from '../support/check/checkTitle.js';
 import checkUrl from '../support/check/checkURL.js';
 import closeAllButFirstTab from '../support/action/closeAllButFirstTab.js';
 import compareText from '../support/check/compareText.js';
+import createSplashScreens from '../support/action/createSplashScreens.js';
 import isEnabled from '../support/check/isEnabled.js';
 import isDisplayed from '../support/check/isDisplayed.js';
+import login from '../support/action/login.js';
 import openWebsite from '../support/action/openWebsite.js';
 import setWindowSize from '../support/action/setWindowSize.js';
+
+Given(/^I am logged in$/, login);
+
+Given(/^the following splash screens:$/, createSplashScreens);
 
 Given(/^I open the (url|site) "([^"]*)?"$/, openWebsite);
 

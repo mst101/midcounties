@@ -18,6 +18,8 @@ import checkOffset from '../support/check/checkOffset.js';
 import checkProperty from '../support/check/checkProperty.js';
 import checkFontProperty from '../support/check/checkFontProperty.js';
 import checkSelected from '../support/check/checkSelected.js';
+import checkSplashScreenOne from '../support/check/checkSplashScreenOne.js';
+import checkSplashScreens from '../support/check/checkSplashScreens.js';
 import checkTitle from '../support/check/checkTitle.js';
 import checkTitleContains from '../support/check/checkTitleContains.js';
 import checkURL from '../support/check/checkURL.js';
@@ -30,6 +32,16 @@ import isVisible from '../support/check/isDisplayed.js';
 import waitFor from '../support/action/waitFor.js';
 import waitForVisible from '../support/action/waitForDisplayed.js';
 import checkIfElementExists from '../support/lib/checkIfElementExists.js';
+
+Then(
+  /^I expect( NOT)* to see the first standard splash screen$/,
+  checkSplashScreenOne,
+);
+
+Then(
+  /^I expect( NOT)* to see the (forced|standard)* splash screen[s]*$/,
+  checkSplashScreens,
+);
 
 Then(/^I expect that the title is( not)* "([^"]*)?"$/, checkTitle);
 
